@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace FiniteStateEntropy
 {
-    internal static class FseBlockCompressor
+    public static class FseBlockCompressor
     {
         internal const int FSE_MAX_SYMBOL_VALUE = 255;
 
@@ -19,7 +19,7 @@ namespace FiniteStateEntropy
         internal const int FSE_MAXTABLESIZE_MASK = FSE_MAX_TABLESIZE - 1;
         internal const int FSE_DEFAULT_TABLELOG = FSE_DEFAULT_MEMORY_USAGE - 2;
         internal const int FSE_MIN_TABLELOG = 5;
-        internal const int FSE_TABLELOG_ABSOLUTE_MAX = 15;
+        public const int FSE_TABLELOG_ABSOLUTE_MAX = 15;
 
         internal const int FSE_NCOUNTBOUND = 512;
 
@@ -287,7 +287,7 @@ namespace FiniteStateEntropy
             return FseWriteNCountGeneric(buffer, normalizedCounter, maxSymbolValue, tableLog, out bytesWritten);
         }
 
-        private static int FseCompressTableSizeU32(int maxTableLog, int maxSymbolValue) => (1 + (1 << (maxTableLog - 1)) + ((maxSymbolValue + 1) * 2));
+        public static int FseCompressTableSizeU32(int maxTableLog, int maxSymbolValue) => (1 + (1 << (maxTableLog - 1)) + ((maxSymbolValue + 1) * 2));
 
         public static void FseNormalizeM2(Span<short> norm, int tableLog, ReadOnlySpan<uint> count, int total, int maxSymbolValue)
         {
@@ -647,7 +647,7 @@ namespace FiniteStateEntropy
 
         private static int FseWorkspaceSizeU32(int maxTableLog, int maxSymbolValue) => (FseCompressTableSizeU32(maxTableLog, maxSymbolValue) + ((maxTableLog > 12) ? (1 << (maxTableLog - 2)) : 1024));
 
-        private static FseCompressTable AllocateCTable(Span<byte> buffer, int maxTableLog, int maxSymbolValue)
+        public static FseCompressTable AllocateCTable(Span<byte> buffer, int maxTableLog, int maxSymbolValue)
         {
             int offset = (1 << (maxTableLog - 1)) * 4;
             return new FseCompressTable

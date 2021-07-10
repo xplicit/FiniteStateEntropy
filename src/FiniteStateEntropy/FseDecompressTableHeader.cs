@@ -2,6 +2,7 @@
 {
     public struct FseDecompressTableHeader
     {
-        public short TableLog { get; set; }
+        public short TableLog;
+        public short FastMode;
     }
 }

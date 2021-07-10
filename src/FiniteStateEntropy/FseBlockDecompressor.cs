@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace FiniteStateEntropy
 {
-    internal static class FseBlockDecompressor
+    public static class FseBlockDecompressor
     {
         private const int FSE_MAX_MEMORY_USAGE = 14;
         private const int FSE_DEFAULT_MEMORY_USAGE = 13;
@@ -49,7 +49,7 @@ namespace FiniteStateEntropy
                 {
                     header = default;
                     header.TableLog = (short)tableLog;
-                    //header.FastMode = 1;
+                    header.FastMode = 1;
 
                     short largeLimit = (short)(1 << (tableLog - 1));
                     for (int s = 0; s < maxSV1; s++)
