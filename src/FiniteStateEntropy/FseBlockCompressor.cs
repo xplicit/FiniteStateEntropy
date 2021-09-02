@@ -11,7 +11,7 @@ namespace FiniteStateEntropy
     {
         internal const int FSE_MAX_SYMBOL_VALUE = 255;
 
-        internal const int FSE_MAX_MEMORY_USAGE = 14;
+        internal const int FSE_MAX_MEMORY_USAGE = 16;
         internal const int FSE_DEFAULT_MEMORY_USAGE = 13;
 
         internal const int FSE_MAX_TABLELOG = FSE_MAX_MEMORY_USAGE - 2;
